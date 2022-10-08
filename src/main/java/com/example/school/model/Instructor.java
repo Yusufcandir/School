@@ -1,9 +1,10 @@
 package com.example.school.model;
 
+import org.apache.catalina.LifecycleState;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 public record Instructor (
         @Id
