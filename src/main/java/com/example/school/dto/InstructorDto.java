@@ -1,8 +1,11 @@
 package com.example.school.dto;
 
-import java.util.List;
+import com.example.school.model.Department;
+
+
+import java.util.Set;
 
 public record InstructorDto(
-        String id, String name,String surname, String email, List<InstructorStudentDto> students
+        String id, String name, String surname, String email, Department department, Set<InstructorStudentDto> students
 ) {
 }

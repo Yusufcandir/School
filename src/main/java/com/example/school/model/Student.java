@@ -3,7 +3,8 @@ package com.example.school.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+
+import java.util.Set;
 
 public record Student(
         @Id
@@ -14,20 +15,9 @@ public record Student(
         String name,
         String surname,
         String email,
-        @ManyToMany(cascade = CascadeType.ALL)
-        @JoinTable(
-                name = "student_instructor_map",
-                joinColumns = @JoinColumn(
-                        name = "student_id",
-                        referencedColumnName = "id"
-                ),
-                inverseJoinColumns = @JoinColumn(
-                        name = "instructor_id",
-                        referencedColumnName = "id"
-                )
-
-        )
-        List<Instructor> instructors
+        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "student")
+        @JoinColumn(name = "instructor_id", nullable = false)
+        Set<Instructor> instructors
 
 
 
