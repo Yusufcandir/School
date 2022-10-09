@@ -1,10 +1,11 @@
 package com.example.school.model;
 
-import org.apache.catalina.LifecycleState;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+
+import java.util.Set;
 
 public record Instructor (
         @Id
@@ -14,7 +15,9 @@ public record Instructor (
         String name,
         String surname,
         String email,
-        Department department
+        Department department,
+        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "instructor")
+        Set<Student> students
 
 
 

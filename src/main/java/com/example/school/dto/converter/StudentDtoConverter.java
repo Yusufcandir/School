@@ -5,17 +5,17 @@ import com.example.school.dto.StudentDto;
 import com.example.school.model.Student;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 
 @Component
 public class StudentDtoConverter {
 
-private final InstructorDtoConverter converter;
-private final InstructorStudentDtoConverter instructorStudentDtoConverter;
 
-    public StudentDtoConverter(InstructorDtoConverter converter,InstructorStudentDtoConverter instructorStudentDtoConverter) {
-        this.converter = converter;
-        this.instructorStudentDtoConverter = instructorStudentDtoConverter;
+private final StudentInstructorDtoConverter studentInstructorDtoConverter;
 
+    public StudentDtoConverter(StudentInstructorDtoConverter studentInstructorDtoConverter) {
+        this.studentInstructorDtoConverter = studentInstructorDtoConverter;
     }
 
 
@@ -25,9 +25,11 @@ private final InstructorStudentDtoConverter instructorStudentDtoConverter;
                 from.name(),
                 from.surname(),
                 from.email(),
+                from.instructors()
+                        .stream().map(studentInstructorDtoConverter::convert)
+                        .collect(Collectors.toSet())
 
-
-
-        )
+        );
     }
 }
+
