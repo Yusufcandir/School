@@ -35,4 +35,9 @@ public class InstructorService {
                 .collect(Collectors.toList());
 
     }
+
+
+    public Instructor saveInstructor(Instructor instructor){
+        return repository.save(instructor);
+    }
 }
