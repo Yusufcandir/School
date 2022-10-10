@@ -22,12 +22,12 @@ public class InstructorDtoConverter {
 
     public InstructorDto convertToInstructorDto(Instructor from){
      return new InstructorDto(
-             from.id(),
-             from.name(),
-             from.surname(),
-             from.email(),
-             from.department(),
-             from.students()
+             from.getId(),
+             from.getName(),
+             from.getSurname(),
+             from.getEmail(),
+             from.getDepartment(),
+             from.getStudents()
                      .stream()
                      .map(instructorStudentDtoConverter::convert).collect(Collectors.toSet())
      );

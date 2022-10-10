@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class InstructorStudentDtoConverter {
 
     public InstructorStudentDto convert(Student from){
-        return new InstructorStudentDto(from.id(), from.name(), from.surname(), from.email());
+        return new InstructorStudentDto(from.getId(), from.getName(), from.getSurname(), from.getEmail());
     }
 
 

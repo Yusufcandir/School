@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class StudentInstructorDtoConverter {
 
     public StudentInstructorDto convert(Instructor from){
-        return new StudentInstructorDto(from.id(), from.name(), from.surname(), from.email(), from.department());
+        return new StudentInstructorDto(from.getId(), from.getName(),
+                from.getSurname(),from.getEmail(), from.getDepartment());
     }
 }
