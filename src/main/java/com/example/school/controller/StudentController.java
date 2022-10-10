@@ -28,4 +28,6 @@ public class StudentController {
     public ResponseEntity<List<StudentDto>> getAllStudents(){
         return ResponseEntity.ok(studentService.getAllStudents());
     }
+
+
 }

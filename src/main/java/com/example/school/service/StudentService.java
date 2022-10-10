@@ -35,9 +35,7 @@ public class StudentService {
                 .map(converter::convert).collect(Collectors.toList());
     }
 
-    public Student saveStudent(Student student){
-        return studentRepository.save(student);
-    }
+
 
 
 

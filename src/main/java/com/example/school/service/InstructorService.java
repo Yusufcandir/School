@@ -37,7 +37,5 @@ public class InstructorService {
     }
 
 
-    public Instructor saveInstructor(Instructor instructor){
-        return repository.save(instructor);
-    }
+
 }
