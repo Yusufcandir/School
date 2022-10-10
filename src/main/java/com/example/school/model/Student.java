@@ -1,9 +1,9 @@
 package com.example.school.model;
 
 import lombok.Data;
-import lombok.Getter;
+
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+
 
 import javax.persistence.*;
 
@@ -61,13 +61,7 @@ public class Student {
 
         }
 
-        public Student(String id, String name, String surname, String email, Set<Instructor> instructors) {
-                this.id = id;
-                this.name = name;
-                this.surname = surname;
-                this.email = email;
-                this.instructors = instructors;
-        }
+
 
         public Student() {
 

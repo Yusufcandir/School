@@ -1,9 +1,7 @@
 package com.example.school.model;
 
 
-import com.example.school.enumuration.Department;
 import lombok.Data;
-import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
 
 
@@ -57,14 +55,7 @@ public class Instructor {
                 this.students = students;
         }
 
-        public Instructor(String id, String name, String surname, String email, Department department, Set<Student> students) {
-                this.id = id;
-                this.name = name;
-                this.surname = surname;
-                this.email = email;
-                this.department = department;
-                this.students = students;
-        }
+
 
         public Instructor() {
 

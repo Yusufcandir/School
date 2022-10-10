@@ -1,6 +1,6 @@
 package com.example.school;
 
-import com.example.school.enumuration.Department;
+import com.example.school.model.Department;
 import com.example.school.model.Instructor;
 import com.example.school.model.Student;
 import com.example.school.repository.InstructorRepository;
@@ -8,8 +8,6 @@ import com.example.school.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Set;
 
