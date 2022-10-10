@@ -21,11 +21,11 @@ private final StudentInstructorDtoConverter studentInstructorDtoConverter;
 
     public StudentDto convert(Student from){
         return new StudentDto(
-                from.id(),
-                from.name(),
-                from.surname(),
-                from.email(),
-                from.instructors()
+                from.getId(),
+                from.getName(),
+                from.getSurname(),
+                from.getSurname(),
+                from.getInstructors()
                         .stream().map(studentInstructorDtoConverter::convert)
                         .collect(Collectors.toSet())
 

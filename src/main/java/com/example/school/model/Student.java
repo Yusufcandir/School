@@ -1,27 +1,75 @@
 package com.example.school.model;
 
+import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import javax.persistence.*;
 
 import java.util.Set;
+//@Entity
+//
+//public record Student(
+//        @Id
+//        @GeneratedValue(generator = "UUID")
+//        @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+//
+//        String id,
+//
+//        String name,
+//        String surname,
+//        String email,
+//        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "student")
+//        @JoinColumn(name = "instructor_id", nullable = false)
+//        Set<Instructor> instructors
+//
+//
+//
+//
+//
+//) {
+//        public Student(String name, String surname, String email) {
+//                this(null, name, surname, email,null);
+//        }
+//
+//        public Student() {
+//                this(null, null, null, null,null);
+//        }
+//
+//}
 
-public record Student(
+@Entity
+@Data
+public class Student {
         @Id
         @GeneratedValue(generator = "UUID")
         @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-        String id,
+        String id;
 
-        String name,
-        String surname,
-        String email,
-        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "student")
-        @JoinColumn(name = "instructor_id", nullable = false)
-        Set<Instructor> instructors
+        String name;
+        String surname;
+        String email;
+        @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+        @JoinColumn(name = "instructor_id")
+        Set<Instructor> instructors;
 
+        public Student(String name, String surname, String email) {
+                this.name = name;
+                this.surname = surname;
+                this.email = email;
 
+        }
 
+        public Student(String id, String name, String surname, String email, Set<Instructor> instructors) {
+                this.id = id;
+                this.name = name;
+                this.surname = surname;
+                this.email = email;
+                this.instructors = instructors;
+        }
 
+        public Student() {
 
-) {
+        }
 }

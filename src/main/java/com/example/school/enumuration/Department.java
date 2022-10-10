@@ -1,4 +1,4 @@
-package com.example.school.model;
+package com.example.school.enumuration;
 
 public enum Department {
 
