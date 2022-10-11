@@ -34,7 +34,7 @@ public class CourseService {
         return converter.convert(findCourseById(id));
     }
 
-    public List<CourseDto> getAllStudents(){
+    public List<CourseDto> getAllCourses(){
         return repository.findAll().stream()
                 .map(converter::convert).collect(Collectors.toList());
     }
