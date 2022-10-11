@@ -7,6 +7,7 @@ package com.example.school.dto;
 //        ) {
 //}
 
+import com.example.school.model.Course;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -20,6 +21,8 @@ public class InstructorStudentDto{
         String name;
         String surname;
         String email;
+
+
 
         public InstructorStudentDto(String id, String name, String surname, String email) {
                 this.id = id;

@@ -54,6 +54,11 @@ public class Student {
         @JoinColumn(name = "instructor_id")
         Set<Instructor> instructors;
 
+        @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+        Course courses;
+
+
+
         public Student(String name, String surname, String email) {
                 this.name = name;
                 this.surname = surname;

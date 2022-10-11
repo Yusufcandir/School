@@ -1,6 +1,7 @@
 package com.example.school.model;
 
 
+import com.example.school.enumeration.Department;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 

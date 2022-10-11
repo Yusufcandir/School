@@ -1,6 +1,6 @@
 package com.example.school;
 
-import com.example.school.model.Department;
+import com.example.school.enumeration.Department;
 import com.example.school.model.Instructor;
 import com.example.school.model.Student;
 import com.example.school.repository.InstructorRepository;
@@ -35,7 +35,7 @@ private final InstructorRepository instructorRepository;
                 save(new Student("Yusuf", "Candır", "yusuf@gmail.com"));
         Instructor instructor1= instructorRepository.
                 save(new Instructor("Zeynep", "Gültekin", "zeynep@gmail.com",
-                        Department.ArtHistory, Set.of(student1)));
+                        Department.Architecture, Set.of(student1)));
 
         System.out.println(student1);
         System.out.println(instructor1);
