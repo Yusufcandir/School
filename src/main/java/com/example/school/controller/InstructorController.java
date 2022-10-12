@@ -1,12 +1,10 @@
 package com.example.school.controller;
 
 import com.example.school.dto.InstructorDto;
+import com.example.school.model.Instructor;
 import com.example.school.service.InstructorService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +25,22 @@ public class InstructorController {
     public ResponseEntity<List<InstructorDto>> getAllInstructors(){
         return ResponseEntity.ok(service.getAllInstructors());
     }
+
+    @PostMapping
+    public void save(@RequestBody Instructor instructor){
+        service.save(instructor);
+    }
+
+    @PutMapping("/{instructorId}")
+    public void update(@RequestBody Instructor instructor, @PathVariable String instructorId ){
+        service.update(instructor,instructorId);
+
+    }
+
+    @DeleteMapping("/{instructorId}")
+    public void delete(@PathVariable String instructorId){
+        service.delete(instructorId);
+    }
+
+    
 }
