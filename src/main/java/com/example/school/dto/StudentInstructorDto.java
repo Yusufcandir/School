@@ -1,6 +1,7 @@
 package com.example.school.dto;
 
-import com.example.school.enumeration.Department;
+
+import com.example.school.model.Department;
 import lombok.Data;
 
 import javax.persistence.Entity;

@@ -1,12 +1,10 @@
 package com.example.school.dto;
 
-import com.example.school.model.Course;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.Set;
 
 //public record StudentDto(
@@ -24,8 +22,6 @@ public class StudentDto{
     @OneToMany
     Set<StudentInstructorDto> instructors;
 
-    @OneToOne
-    Course course;
 
     public StudentDto(String id, String name, String surname, String email, Set<StudentInstructorDto> instructors) {
         this.id = id;

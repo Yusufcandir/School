@@ -1,6 +1,7 @@
 package com.example.school;
 
-import com.example.school.enumeration.Department;
+
+import com.example.school.model.Department;
 import com.example.school.model.Instructor;
 import com.example.school.model.Student;
 import com.example.school.repository.InstructorRepository;
@@ -31,13 +32,23 @@ private final InstructorRepository instructorRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        Student student1= studentRepository.
-                save(new Student("Yusuf", "Candır", "yusuf@gmail.com"));
         Instructor instructor1= instructorRepository.
                 save(new Instructor("Zeynep", "Gültekin", "zeynep@gmail.com",
-                        Department.Architecture, Set.of(student1)));
+                        Department.Architecture));
+        Instructor instructor2= instructorRepository.
+                save(new Instructor("Yıldız", "Yılmaz", "yıldız@gmail.com",Department.Biology));
 
-        System.out.println(student1);
+
+        Student student1= studentRepository.
+                save(new Student("Yusuf", "Candır", "yusuf@gmail.com",Set.of(instructor1)));
+
+        Student student2=studentRepository.
+                save(new Student("Elif", "Başar", "elif@gmail.com",Set.of(instructor2)));
+
+
         System.out.println(instructor1);
+        System.out.println(instructor2);
+        System.out.println(student1);
+        System.out.println(student2);
     }
 }
