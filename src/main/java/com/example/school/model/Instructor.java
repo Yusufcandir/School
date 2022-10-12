@@ -1,13 +1,13 @@
 package com.example.school.model;
 
 
+
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
 
-import java.util.Set;
 //
 //public record Instructor (
 //        @Id
@@ -44,15 +44,13 @@ public class Instructor {
         String surname;
         String email;
         Department department;
-        @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-        Set<Student> students;
 
-        public Instructor(String name, String surname, String email, Department department, Set<Student> students) {
+        public Instructor(String name, String surname, String email, Department department) {
                 this.name = name;
                 this.surname = surname;
                 this.email = email;
                 this.department = department;
-                this.students = students;
+
         }
 
 

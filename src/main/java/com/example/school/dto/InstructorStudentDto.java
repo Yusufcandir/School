@@ -21,12 +21,9 @@ public class InstructorStudentDto{
         String surname;
         String email;
 
-        public InstructorStudentDto(String id, String name, String surname, String email) {
-                this.id = id;
-                this.name = name;
-                this.surname = surname;
-                this.email = email;
-        }
+
+
+
 
         public InstructorStudentDto() {
 

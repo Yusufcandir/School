@@ -1,5 +1,6 @@
 package com.example.school.dto;
 
+
 import com.example.school.model.Department;
 import lombok.Data;
 
