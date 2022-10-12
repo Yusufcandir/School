@@ -7,12 +7,6 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-//public record StudentInstructorDto(
-//        String id, String name, String surname, String email, Department department
-//){
-//
-//
-
 @Entity
 @Data
 public class StudentInstructorDto {

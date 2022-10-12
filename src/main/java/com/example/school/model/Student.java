@@ -8,37 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 import java.util.Set;
-//@Entity
-//
-//public record Student(
-//        @Id
-//        @GeneratedValue(generator = "UUID")
-//        @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-//
-//        String id,
-//
-//        String name,
-//        String surname,
-//        String email,
-//        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "student")
-//        @JoinColumn(name = "instructor_id", nullable = false)
-//        Set<Instructor> instructors
-//
-//
-//
-//
-//
-//) {
-//        public Student(String name, String surname, String email) {
-//                this(null, name, surname, email,null);
-//        }
-//
-//        public Student() {
-//                this(null, null, null, null,null);
-//        }
-//
-//}
-
 @Entity
 @Data
 public class Student {
