@@ -7,10 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Set;
 
-//public record StudentDto(
-//        String id, String name, String surname, String email, Set<StudentInstructorDto> instructors
-//) {
-//}
 @Entity
 @Data
 public class StudentDto{

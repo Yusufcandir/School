@@ -14,8 +14,7 @@ import java.util.Set;
 
 @SpringBootApplication
 
-// could not find those classes,so I move StudentApplication class under the model package
-//@EntityScan(basePackages = {"com.example.school.model"})
+
 
 public class SchoolApplication implements CommandLineRunner {
 private final StudentRepository studentRepository;
