@@ -8,6 +8,7 @@ import com.example.school.repository.InstructorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +36,28 @@ public class InstructorService {
                 .map(converter::convertToInstructorDto)
                 .collect(Collectors.toList());
 
+    }
+
+    public void save(Instructor instructor){
+    repository.save(instructor);
+    }
+
+    public void update(Instructor instructor,String id){
+        Optional<Instructor> exits=repository.findById(id);
+    if (exits.isPresent()){
+        repository.save(instructor);
+    }
+    else {
+        throw new InstructorNotFoundException("There is no such an instructor with id: "+ id);
+    }
+    }
+
+    public void delete(String id){
+    boolean exits= repository.existsById(id);
+    if (!exits){
+        throw new InstructorNotFoundException("There is no such an instructor with id: "+ id);
+    }
+     repository.deleteById(id);
     }
 
 
