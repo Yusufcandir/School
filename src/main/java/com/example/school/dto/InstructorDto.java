@@ -5,11 +5,13 @@ import com.example.school.model.Department;
 import lombok.Data;
 
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 @Data
+
 public class InstructorDto{
     @Id
     String id;

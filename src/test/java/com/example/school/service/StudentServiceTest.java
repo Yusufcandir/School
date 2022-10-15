@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
 
-class StudentServiceTest {
+class StudentServiceTest  {
 
     @Autowired
     private StudentService service;
