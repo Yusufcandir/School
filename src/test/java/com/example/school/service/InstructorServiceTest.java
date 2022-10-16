@@ -1,6 +1,7 @@
 package com.example.school.service;
 
 
+import com.example.school.dto.InstructorDto;
 import com.example.school.dto.converter.InstructorDtoConverter;
 import com.example.school.exception.InstructorNotFoundException;
 import com.example.school.model.Department;
@@ -44,6 +45,18 @@ class InstructorServiceTest {
         Mockito.when(repository.findById("id")).thenReturn(Optional.empty());
 
         assertThrows(InstructorNotFoundException.class,()-> service.findInstructorById("id"));
+    }
+
+
+    @Test
+    public void whenInstructorIdExits_getInstructorById_shouldReturnInstructorDto(){
+        Instructor instructor= new Instructor("id","name","surname","email", Department.ArtHistory);
+        InstructorDto instructorDto= new InstructorDto("id","name","surname","email", Department.ArtHistory);
+        Mockito.when(repository.findById("id")).thenReturn(Optional.of(instructor));
+        Mockito.when(converter.convertToInstructorDto(instructor)).thenReturn(instructorDto);
+
+        InstructorDto result= service.getInstructorById("id");
+        assertEquals(result,instructorDto);
     }
 
 
