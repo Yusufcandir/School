@@ -4,7 +4,7 @@ import com.example.school.dto.StudentDto;
 import com.example.school.model.Student;
 import com.example.school.service.StudentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
