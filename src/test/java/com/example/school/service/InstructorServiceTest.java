@@ -2,6 +2,7 @@ package com.example.school.service;
 
 
 import com.example.school.dto.converter.InstructorDtoConverter;
+import com.example.school.exception.InstructorNotFoundException;
 import com.example.school.model.Department;
 import com.example.school.model.Instructor;
 import com.example.school.repository.InstructorRepository;
@@ -12,6 +13,7 @@ import org.mockito.Mockito;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 class InstructorServiceTest {
     private InstructorService service;
@@ -34,6 +36,14 @@ class InstructorServiceTest {
 
         Instructor result= service.findInstructorById("id");
         assertEquals(result,instructor);
+    }
+
+    @Test
+    public void whenInstructorIdDoesNotExits_findInstructorById_shouldThrowInstructorNotFoundException(){
+
+        Mockito.when(repository.findById("id")).thenReturn(Optional.empty());
+
+        assertThrows(InstructorNotFoundException.class,()-> service.findInstructorById("id"));
     }
 
 
