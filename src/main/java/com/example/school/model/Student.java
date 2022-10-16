@@ -33,7 +33,13 @@ public class Student {
 
         }
 
-
+        public Student(String id, String name, String surname, String email, Set<Instructor> instructors) {
+                this.id = id;
+                this.name = name;
+                this.surname = surname;
+                this.email = email;
+                this.instructors = instructors;
+        }
 
         public Student() {
 

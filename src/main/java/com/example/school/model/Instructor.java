@@ -28,7 +28,13 @@ public class Instructor {
 
         }
 
-
+        public Instructor(String id, String name, String surname, String email, Department department) {
+                this.id = id;
+                this.name = name;
+                this.surname = surname;
+                this.email = email;
+                this.department = department;
+        }
 
         public Instructor() {
 
