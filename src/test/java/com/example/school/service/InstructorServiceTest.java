@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -57,6 +58,27 @@ class InstructorServiceTest {
 
         InstructorDto result= service.getInstructorById("id");
         assertEquals(result,instructorDto);
+    }
+
+    @Test
+    public void whenInstructorDoesNotIdExits_getInstructorById_shouldThrowInstructorNotfoundException(){
+
+        Mockito.when(repository.findById("id")).thenReturn(Optional.empty());
+        Mockito.verifyNoInteractions(converter);
+
+        assertThrows(InstructorNotFoundException.class,()->service.getInstructorById("id"));
+    }
+
+    @Test
+    public void whenInstructorsAreFound_getAllInstructors_shouldReturnListOfInstructorDto(){
+        InstructorDto instructorDto= new InstructorDto("id","name","surname","email", Department.ArtHistory);
+        Instructor instructor= new Instructor("id","name","surname","email", Department.ArtHistory);
+        Mockito.when(repository.findAll()).thenReturn(List.of(instructor));
+        Mockito.when(converter.convertToInstructorDto(instructor)).thenReturn(instructorDto);
+
+        List<InstructorDto> result=service.getAllInstructors();
+        assertEquals(result,List.of(instructorDto));
+
     }
 
 
