@@ -74,7 +74,7 @@ class StudentServiceTest  {
     }
 
     @Test
-    public void whenStudentsAreFound_getAllStudents_shouldReturnListStudentDto(){
+    public void whenStudentsAreFound_getAllStudents_shouldReturnListOfStudentDto(){
         StudentDto studentDto= new StudentDto("id","name","surname","email",Set.of());
         Student student= new Student("id","name","surname","email", Set.of());
 
