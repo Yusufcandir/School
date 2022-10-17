@@ -1,0 +1,17 @@
+version: '2.4'
+services:
+   school:
+     image: school:0.0.1
+     ports:
+       - 8080:9090
+     environment:
+       DB_URL: "jdbc:h2:tpc://h2db/school-db; DB_CLOSE_DELAY=-1"
+       DB_USERNAME: "yusuf"
+       DB_PASSWORD: "password"
+
+
+
+   h2db:
+     image: buildo/h2database
+     ports:
+     - 8081:9091
