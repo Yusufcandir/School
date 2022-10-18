@@ -11,4 +11,4 @@ RUN ./mvnw package
 FROM openjdk:17
 WORKDIR school
 COPY --from=build target/*.jar school.jar
-ENTRYPOINT ["java", "-jar","-DSpring.profiles.active=docker", "school.jar"]
+ENTRYPOINT ["java", "-jar", "school.jar"]
