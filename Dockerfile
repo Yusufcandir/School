@@ -10,5 +10,5 @@ RUN ./mvnw package
 
 FROM openjdk:17
 WORKDIR school
-COPY --from=build target/*.jar school.jar
-ENTRYPOINT ["java", "-jar", "school.jar"]
+COPY --from=build target/*.jar School.jar
+ENTRYPOINT ["java", "-jar", "School.jar"]
