@@ -6,6 +6,9 @@ import com.example.school.exception.InstructorNotFoundException;
 import com.example.school.exception.StudentNotFoundException;
 import com.example.school.model.Student;
 import com.example.school.repository.StudentRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 
-public class StudentService {
+public class StudentService implements UserDetailsService {
 
     private final StudentRepository studentRepository;
     private final StudentDtoConverter converter;
@@ -61,12 +64,9 @@ public class StudentService {
     }
 
 
-
-
-
-
-
-
-
-
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return studentRepository.findByEmail(email).
+                orElseThrow(()-> new StudentNotFoundException(String.format("User with email %s not found",email)));
+    }
 }
