@@ -18,6 +18,7 @@ public class Instructor {
         String name;
         String surname;
         String email;
+       @Enumerated(EnumType.STRING)
         Department department;
 
         public Instructor(String name, String surname, String email, Department department) {
