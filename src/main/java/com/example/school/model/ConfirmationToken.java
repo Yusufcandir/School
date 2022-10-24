@@ -23,11 +23,10 @@ public class ConfirmationToken {
     @ManyToOne
     private Student student;
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, LocalDateTime confirmedAt, Student student) {
+    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt ,Student student) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.confirmedAt = confirmedAt;
         this.student = student;
     }
 

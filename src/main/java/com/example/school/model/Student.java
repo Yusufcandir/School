@@ -25,8 +25,8 @@ public class Student implements UserDetails {
         String surname;
         String email;
 
-        boolean locked;
-        boolean enabled;
+        Boolean locked;
+        Boolean enabled;
         String password;
 
         @Enumerated(EnumType.STRING)

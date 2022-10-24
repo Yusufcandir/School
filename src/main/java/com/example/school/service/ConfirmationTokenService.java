@@ -4,17 +4,16 @@ import com.example.school.model.ConfirmationToken;
 import com.example.school.repository.ConfirmationTokenRepository;
 import org.springframework.stereotype.Service;
 
-import javax.management.Query;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class ConfirmationEmailService {
+public class ConfirmationTokenService {
 
     private final ConfirmationTokenRepository repository;
 
 
-    public ConfirmationEmailService(ConfirmationTokenRepository repository) {
+    public ConfirmationTokenService(ConfirmationTokenRepository repository) {
         this.repository = repository;
     }
 
