@@ -53,6 +53,14 @@ public class Student implements UserDetails {
                 this.instructors = instructors;
         }
 
+        public Student(String name, String surname, String email, String password, UserRole userRole) {
+                this.name = name;
+                this.surname = surname;
+                this.email = email;
+                this.password = password;
+                this.userRole = userRole;
+        }
+
         public Student() {
 
         }
