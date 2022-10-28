@@ -26,7 +26,6 @@ private final StudentInstructorDtoConverter studentInstructorDtoConverter;
                 from.getName(),
                 from.getSurname(),
                 from.getSurname(),
-                from.getPassword(),
                 from.getInstructors()
                         .stream().map(studentInstructorDtoConverter::convert)
                         .collect(Collectors.toSet())
