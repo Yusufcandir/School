@@ -36,7 +36,7 @@ public class RegistrationService {
             String token = studentService.singUp(new Student(request.firstName(),request.lastName(),
                     request.email(),request.password(), UserRole.Student));
 
-            String link= "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+            String link= "http://localhost:8080/v1/registration/confirm?token=" + token;
             sender.sendEmail(request.email(),buildEmail(request.firstName(),link));
             return token;
         }
@@ -71,31 +71,6 @@ public class RegistrationService {
 
         return "Your email has been confirmed";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // taken from Internet
     private String buildEmail(String name, String link) {

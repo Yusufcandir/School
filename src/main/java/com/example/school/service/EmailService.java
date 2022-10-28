@@ -1,7 +1,6 @@
 package com.example.school.service;
 
 import com.example.school.email.EmailSender;
-import com.example.school.exception.StudentNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,7 +28,7 @@ private final static Logger logger= LoggerFactory.getLogger(EmailService.class);
          MimeMessage mimeMessage= mailSender.createMimeMessage();
          MimeMessageHelper helper= new MimeMessageHelper(mimeMessage,"utf-8");
          helper.setText(email,true);
-         helper.setFrom("test@email.com");
+         helper.setFrom("yusuf@gmail.com");
          helper.setSubject("Confirm your email");
          mailSender.send(mimeMessage);
 
