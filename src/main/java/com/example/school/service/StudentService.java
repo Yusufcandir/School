@@ -11,6 +11,7 @@ import com.example.school.repository.StudentRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,14 +27,18 @@ public class StudentService implements UserDetailsService {
     private final StudentRepository studentRepository;
     private final StudentDtoConverter converter;
 
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder encoder;
+
+
+
+
     private final ConfirmationTokenService confirmationTokenService;
 
     public StudentService(StudentRepository studentRepository, StudentDtoConverter converter,
-                          PasswordEncoder passwordEncoder, ConfirmationTokenService confirmationTokenService) {
+                          PasswordEncoder encoder, ConfirmationTokenService confirmationTokenService) {
         this.studentRepository = studentRepository;
         this.converter = converter;
-        this.passwordEncoder=passwordEncoder;
+        this.encoder = encoder;
         this.confirmationTokenService= confirmationTokenService;
 
     }
@@ -100,7 +105,7 @@ public class StudentService implements UserDetailsService {
         }
 
 
-        String encodedPassword= passwordEncoder.bCryptPasswordEncoder().encode(student.getPassword());
+        String encodedPassword= encoder.bCryptPasswordEncoder().encode(student.getPassword());
         student.setPassword(encodedPassword);
 
         // after encoding the password saving student
@@ -125,4 +130,6 @@ public class StudentService implements UserDetailsService {
     public int enableStudent(String email){
         return studentRepository.enableAppUser(email);
     }
+
+
 }
