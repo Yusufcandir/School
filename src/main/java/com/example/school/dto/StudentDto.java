@@ -15,18 +15,15 @@ public class StudentDto{
     String name;
     String surname;
     String email;
-
-    String password;
     @OneToMany
     Set<StudentInstructorDto> instructors;
 
 
-    public StudentDto(String id, String name, String surname, String email,String password, Set<StudentInstructorDto> instructors) {
+    public StudentDto(String id, String name, String surname, String email, Set<StudentInstructorDto> instructors) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.password=password;
         this.instructors = instructors;
     }
 
