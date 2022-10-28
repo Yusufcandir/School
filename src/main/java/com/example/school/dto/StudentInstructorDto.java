@@ -5,8 +5,6 @@ import com.example.school.model.Department;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -17,7 +15,6 @@ public class StudentInstructorDto {
     String name;
     String surname;
     String email;
-    @Enumerated(EnumType.STRING)
     Department department;
 
     public StudentInstructorDto(String id, String name, String surname, String email, Department department) {

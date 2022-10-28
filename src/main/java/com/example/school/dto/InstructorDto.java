@@ -7,8 +7,6 @@ import lombok.Data;
 
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -20,7 +18,6 @@ public class InstructorDto{
     String name;
     String surname;
     String email;
-    @Enumerated(EnumType.STRING)
     Department department;
 
 
