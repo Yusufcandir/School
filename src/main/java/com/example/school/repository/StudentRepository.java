@@ -17,6 +17,6 @@ public interface StudentRepository extends JpaRepository<Student,String> {
   Optional<Student> findStudentByEmail(String email);
     @Transactional
     @Modifying
-    @Query("UPDATE Student s SET s.enabled=true WHERE s.email=?1")
+    @Query("UPDATE Student s " +"SET s.enabled=true WHERE s.email=?1")
     int enableStudent(String email);
 }

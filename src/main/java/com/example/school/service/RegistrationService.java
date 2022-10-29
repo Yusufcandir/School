@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+
 
 @Service
 public class RegistrationService {
@@ -34,41 +34,45 @@ public class RegistrationService {
     public String register(RegistrationRequest request){
         boolean isValid= validator.test(request.email());
 
-        if (isValid){
-            String token=service.signUpStudent(new Student(request.name(), request.surname(),
-                    request.email(),request.password(), UserRole.USER));
+        if (!isValid) {
+            throw new IllegalStateException("email not valid");
+        }
+
+
+            String token=service.signUpStudent(
+                    new Student(
+                            request.name(),
+                            request.surname(),
+                            request.email(),
+                            request.password(),
+                            UserRole.USER));
 
             String link = "http://localhost:8080/v1/registration/confirm?token=" + token;
             sender.sendEmail(request.email(), buildEmail(request.name(), link));
             return  token;
-        }else {
-            throw new IllegalArgumentException(String.format("Email % is not valid", request.email()));
-        }
 
     }
 
 
     @Transactional
     public String confirmToken(String token){
-        Optional<ConfirmationToken> confirmToken=confirmationTokenService.getToken(token);
+        ConfirmationToken confirmToken=confirmationTokenService.getToken(token).
+                orElseThrow(() ->
+                        new IllegalStateException("token not found"));
 
-        if (confirmToken.isEmpty()){
-            throw new IllegalStateException("Token not found!");
-        }
-
-        if (confirmToken.get().getConfirmedAt()!=null){
+        if (confirmToken.getConfirmedAt()!=null){
             throw new IllegalStateException("Email is already confirmed");
         }
 
-        LocalDateTime expiresAt= confirmToken.get().getExpiresAt();
+        LocalDateTime expiresAt= confirmToken.getExpiresAt();
 
         if (expiresAt.isBefore(LocalDateTime.now())){
-            throw new IllegalStateException("Token is already expired!");
+            throw new IllegalStateException("Token expired!");
 
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        service.enableAppUser(confirmToken.get().getStudent().getEmail());
+        service.enableAppUser(confirmToken.getStudent().getEmail());
 
         return "Your email has been confirmed";
     }

@@ -17,8 +17,8 @@ public class InstructorStudentDto{
         private String surname;
         private String email;
         private String password;
-        private Boolean locked;
-        private Boolean enabled;
+        private Boolean locked=false;
+        private Boolean enabled=false;
         @Enumerated(EnumType.STRING)
         UserRole userRole;
 
@@ -30,15 +30,7 @@ public class InstructorStudentDto{
 
         }
 
-        public InstructorStudentDto(String name, String surname, String email, String password, UserRole userRole) {
-                this.name = name;
-                this.surname = surname;
-                this.email = email;
-                this.password = password;
-                this.userRole = userRole;
-                this.locked=false;
-                this.enabled=true;
-        }
+
 
 
 }

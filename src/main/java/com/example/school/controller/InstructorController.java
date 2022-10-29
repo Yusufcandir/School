@@ -4,7 +4,6 @@ import com.example.school.dto.InstructorDto;
 import com.example.school.model.Instructor;
 import com.example.school.service.InstructorService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class InstructorController {
 
     @PostMapping
     public void save(@RequestBody Instructor instructor){
-        service.save(instructor);
+         service.save(instructor);
     }
 
     @PutMapping("/{instructorId}")

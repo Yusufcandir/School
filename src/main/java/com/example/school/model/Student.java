@@ -27,8 +27,8 @@ public class Student implements UserDetails {
 
     private String password;
 
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked=false;
+    private Boolean enabled=false;
 
     @Enumerated(EnumType.STRING)
     UserRole userRole;
@@ -36,30 +36,13 @@ public class Student implements UserDetails {
     Set<Instructor> instructors;
 
 
-    public Student(String name, String surname, String email, Set<Instructor> instructor) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.instructors = instructor;
-
-    }
-
     public Student(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.locked=false;
-        this.enabled=true;
-    }
 
-    public Student(String id, String name, String surname, String email, Set<Instructor> instructors) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.instructors = instructors;
     }
 
     public Student() {
