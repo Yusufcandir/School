@@ -16,7 +16,6 @@ public class ConfirmationToken {
 
     private LocalDateTime confirmedAt;
     @ManyToOne
-    @JoinColumn(nullable = false,name = "student_id")
     private Student student;
 
 
@@ -26,14 +25,6 @@ public class ConfirmationToken {
     public ConfirmationToken() {
     }
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt,
-                             LocalDateTime confirmedAt, Student student) {
-        this.token = token;
-        this.createdAt = createdAt;
-        this.expiresAt = expiresAt;
-        this.confirmedAt = confirmedAt;
-        this.student = student;
-    }
 
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, Student student) {
         this.token = token;

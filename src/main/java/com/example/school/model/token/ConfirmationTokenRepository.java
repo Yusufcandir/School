@@ -1,6 +1,5 @@
 package com.example.school.model.token;
 
-import com.example.school.model.token.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

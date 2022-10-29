@@ -39,7 +39,7 @@ public class InstructorService {
     }
 
     public void save(Instructor instructor){
-    repository.save(instructor);
+        repository.save(instructor);
     }
 
     public void update(Instructor instructor,String id){

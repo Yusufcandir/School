@@ -30,7 +30,7 @@ public class StudentController {
 
     @PostMapping()
     public void save(@RequestBody Student student) {
-        studentService.save(student);
+         studentService.save(student);
     }
 
     @PutMapping("/{studentId}")

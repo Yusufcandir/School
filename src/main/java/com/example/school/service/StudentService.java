@@ -86,16 +86,16 @@ public class StudentService implements UserDetailsService {
     boolean exits= studentRepository.findStudentByEmail(student.getEmail()).isPresent();
 
     if (exits){
-
-        Student beforeSignUp= studentRepository.findStudentByEmail(student.getEmail()).get();
-        Boolean isEnabled=beforeSignUp.getEnabled();
-
-        if (!isEnabled){
-            String token = UUID.randomUUID().toString();
-            saveConfirmationToken(beforeSignUp,token);
-
-            return token;
-        }
+//
+//        Student beforeSignUp= studentRepository.findStudentByEmail(student.getEmail()).get();
+//        Boolean isEnabled=beforeSignUp.getEnabled();
+//
+//        if (!isEnabled){
+//            String token = UUID.randomUUID().toString();
+//            saveConfirmationToken(beforeSignUp,token);
+//
+//            return token;
+//        }
 
         throw new IllegalStateException(String.format("Student with email %s is already exists!", student.getEmail()));
 
@@ -108,19 +108,20 @@ public class StudentService implements UserDetailsService {
 
     String token= UUID.randomUUID().toString();
 
-    saveConfirmationToken(student,token);
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                student
+        );
+
+    tokenService.saveConfirmationToken(confirmationToken);
 
     return token;
 
     }
 
-    protected void saveConfirmationToken(Student student, String token){
-        ConfirmationToken confirmationToken= new ConfirmationToken(token, LocalDateTime.now()
-        ,LocalDateTime.now().plusMinutes(15),student);
 
-        tokenService.saveConfirmationToken(confirmationToken);
-
-    }
 
     public int enableAppUser(String email){
         return studentRepository.enableStudent(email);

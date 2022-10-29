@@ -16,8 +16,8 @@ public class StudentDto {
     private String email;
 
     private String password;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked=false;
+    private Boolean enabled=false;
     @Enumerated(EnumType.STRING)
     UserRole userRole;
     @OneToMany
@@ -32,15 +32,6 @@ public class StudentDto {
         this.instructors = instructors;
     }
 
-    public StudentDto(String name, String surname, String email, String password, UserRole userRole) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.userRole = userRole;
-        this.locked=false;
-        this.enabled=true;
-    }
 
     public StudentDto() {
 
