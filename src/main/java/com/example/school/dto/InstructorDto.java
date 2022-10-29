@@ -5,7 +5,6 @@ import com.example.school.model.Department;
 import lombok.Data;
 
 
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,14 +13,16 @@ import javax.persistence.Id;
 @Entity
 @Data
 
-public class InstructorDto{
+public class InstructorDto {
     @Id
-    String id;
-    String name;
-    String surname;
-    String email;
+    private String id;
+    private String name;
+    private String surname;
+    private String email;
+
+
     @Enumerated(EnumType.STRING)
-    Department department;
+    private Department department;
 
 
     public InstructorDto(String id, String name, String surname, String email, Department department) {

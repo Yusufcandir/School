@@ -1,22 +1,27 @@
 package com.example.school.dto;
 
+import com.example.school.model.UserRole;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Data
-public class StudentDto{
+public class StudentDto {
     @Id
-    String id;
-    String name;
-    String surname;
-    String email;
+    private String id;
+    private String name;
+    private String surname;
+    private String email;
+
+    private String password;
+    private Boolean locked;
+    private Boolean enabled;
+    @Enumerated(EnumType.STRING)
+    UserRole userRole;
     @OneToMany
-    Set<StudentInstructorDto> instructors;
+    private Set<StudentInstructorDto> instructors;
 
 
     public StudentDto(String id, String name, String surname, String email, Set<StudentInstructorDto> instructors) {
@@ -25,6 +30,16 @@ public class StudentDto{
         this.surname = surname;
         this.email = email;
         this.instructors = instructors;
+    }
+
+    public StudentDto(String name, String surname, String email, String password, UserRole userRole) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+        this.locked=false;
+        this.enabled=true;
     }
 
     public StudentDto() {

@@ -13,12 +13,12 @@ import javax.persistence.Id;
 @Data
 public class StudentInstructorDto {
     @Id
-    String id;
-    String name;
-    String surname;
-    String email;
+    private String id;
+    private String name;
+    private String surname;
+    private String email;
     @Enumerated(EnumType.STRING)
-    Department department;
+    private Department department;
 
     public StudentInstructorDto(String id, String name, String surname, String email, Department department) {
         this.id = id;

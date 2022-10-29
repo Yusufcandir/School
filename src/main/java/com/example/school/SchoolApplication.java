@@ -1,14 +1,17 @@
 package com.example.school;
 
 
+import com.example.school.config.PasswordEncoder;
 import com.example.school.model.Department;
 import com.example.school.model.Instructor;
 import com.example.school.model.Student;
+import com.example.school.model.UserRole;
 import com.example.school.repository.InstructorRepository;
 import com.example.school.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 import java.util.Set;
 
@@ -16,13 +19,15 @@ import java.util.Set;
 
 
 
-public class SchoolApplication implements CommandLineRunner {
+public class SchoolApplication implements CommandLineRunner{
 private final StudentRepository studentRepository;
 private final InstructorRepository instructorRepository;
+private final PasswordEncoder encoder;
 
-    public SchoolApplication(StudentRepository studentRepository, InstructorRepository instructorRepository) {
+    public SchoolApplication(StudentRepository studentRepository, InstructorRepository instructorRepository, PasswordEncoder encoder) {
         this.studentRepository = studentRepository;
         this.instructorRepository = instructorRepository;
+        this.encoder = encoder;
     }
 
     public static void main(String[] args) {
@@ -39,7 +44,8 @@ private final InstructorRepository instructorRepository;
 
 
         Student student1= studentRepository.
-                save(new Student("Yusuf", "Candır", "yusuf@gmail.com",Set.of(instructor1)));
+                save(new Student("yusuf", "candir", "yusuf@gmail.com",
+                        encoder.bCryptPasswordEncoder().encode("password") ,UserRole.USER));
 
         Student student2=studentRepository.
                 save(new Student("Elif", "Başar", "elif@gmail.com",Set.of(instructor2)));
