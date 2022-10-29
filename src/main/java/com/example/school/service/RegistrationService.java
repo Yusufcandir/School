@@ -35,7 +35,7 @@ public class RegistrationService {
         boolean isValid= validator.test(request.email());
 
         if (isValid){
-            String token=service.signUpStudent(new Student(request.name(),request.surname(),
+            String token=service.signUpStudent(new Student(request.name(), request.surname(),
                     request.email(),request.password(), UserRole.USER));
 
             String link = "http://localhost:8080/v1/registration/confirm?token=" + token;

@@ -4,13 +4,17 @@ import com.example.school.service.StudentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -25,6 +29,9 @@ public class SecurityConfig {
         this.service = service;
         this.encoder = encoder;
     }
+
+
+    //can be used
 
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsManager() {
@@ -47,25 +54,6 @@ public class SecurityConfig {
 //
 //    }
 
-
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user1 = User.withUsername("user1")
-                .password(encoder.bCryptPasswordEncoder().encode("user1Pass"))
-                .roles("USER")
-                .build();
-        UserDetails user2 = User.withUsername("user2")
-                .password(encoder.bCryptPasswordEncoder().encode("user2Pass"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.bCryptPasswordEncoder().encode("adminPass"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2, admin);
-    }
-
-
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
@@ -81,12 +69,16 @@ public class SecurityConfig {
                 .loginPage("/login.html")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
-                .failureUrl("/login.html?error=true");
+                .failureUrl("/login.html?error=true")
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID");
 
 
         return http.build();
 
-
+     // for more specific authentication
 //                    auth.antMatchers(HttpMethod.GET, "/v1/instructor/**").hasAnyRole("ADMIN", "USER");
 //                    auth.antMatchers(HttpMethod.POST, "/v1/instructor/**").hasRole("ADMIN");
 //                    auth.antMatchers(HttpMethod.DELETE, "/v1/instructor/**").hasRole("ADMIN");
@@ -103,7 +95,7 @@ public class SecurityConfig {
     }
 
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 

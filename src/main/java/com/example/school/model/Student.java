@@ -51,7 +51,7 @@ public class Student implements UserDetails {
         this.password = password;
         this.userRole = userRole;
         this.locked=false;
-        this.enabled=false;
+        this.enabled=true;
     }
 
     public Student(String id, String name, String surname, String email, Set<Instructor> instructors) {

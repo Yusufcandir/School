@@ -33,6 +33,7 @@ public class EmailService implements EmailSender {
             helper.setSubject("Confirm your mail");
             helper.setFrom("yusuf@gmail.com");
             mailSender.send(mimeMessage);
+            System.out.println("mail send");
         } catch (MessagingException e) {
             logger.error("Failed to send email for: " + email+ "\n" + e);
             throw new IllegalArgumentException("Failed to send email for: " + email);

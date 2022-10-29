@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -80,7 +79,7 @@ public class StudentService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return studentRepository.findStudentByEmail(email)
-                .orElseThrow(()-> new StudentNotFoundException(String.format("Student with email % not found "+ email)));
+                .orElseThrow(()-> new IllegalArgumentException(String.format("Student with email % not found "+ email)));
     }
 
     public String signUpStudent(Student student){
