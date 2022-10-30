@@ -35,6 +35,15 @@ public class Student implements UserDetails {
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     Set<Instructor> instructors;
 
+    public Student(String id, String name, String surname, String email, String password, UserRole userRole, Set<Instructor> instructors) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
+        this.instructors = instructors;
+    }
 
     public Student(String name, String surname, String email, String password, UserRole userRole) {
         this.name = name;

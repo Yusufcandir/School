@@ -9,6 +9,7 @@ import com.example.school.model.Student;
 import com.example.school.model.token.ConfirmationToken;
 import com.example.school.model.token.ConfirmationTokenService;
 import com.example.school.repository.StudentRepository;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -82,11 +83,10 @@ public class StudentService implements UserDetailsService {
                 .orElseThrow(()-> new IllegalArgumentException(String.format("Student with email % not found "+ email)));
     }
 
+
     public String signUpStudent(Student student){
     boolean exits= studentRepository.findStudentByEmail(student.getEmail()).isPresent();
-
     if (exits){
-//
 //        Student beforeSignUp= studentRepository.findStudentByEmail(student.getEmail()).get();
 //        Boolean isEnabled=beforeSignUp.getEnabled();
 //
@@ -96,27 +96,21 @@ public class StudentService implements UserDetailsService {
 //
 //            return token;
 //        }
-
         throw new IllegalStateException(String.format("Student with email %s is already exists!", student.getEmail()));
-
     }
-
     String encodedPassword= encoder.bCryptPasswordEncoder().encode(student.getPassword());
     student.setPassword(encodedPassword);
 
     studentRepository.save(student);
 
     String token= UUID.randomUUID().toString();
-
-        ConfirmationToken confirmationToken = new ConfirmationToken(
+    ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 student
         );
-
     tokenService.saveConfirmationToken(confirmationToken);
-
     return token;
 
     }
