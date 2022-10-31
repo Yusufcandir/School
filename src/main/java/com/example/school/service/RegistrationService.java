@@ -22,6 +22,8 @@ public class RegistrationService {
     private final EmailSender sender;
     private final ConfirmationTokenService confirmationTokenService;
 
+
+
     public RegistrationService(StudentService service, EmailValidator validator,
                             EmailSender sender, ConfirmationTokenService confirmationTokenService) {
         this.service = service;
@@ -29,6 +31,7 @@ public class RegistrationService {
         this.sender = sender;
         this.confirmationTokenService = confirmationTokenService;
     }
+
 
 
     public String register(RegistrationRequest request){
@@ -76,20 +79,6 @@ public class RegistrationService {
 
         return "Your email has been confirmed";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private String buildEmail(String name, String link) {
